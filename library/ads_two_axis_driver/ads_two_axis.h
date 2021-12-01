@@ -66,25 +66,7 @@ int ads_two_axis_set_sample_rate(ADS_SPS_T sps);
  * @param	run	true if activating ADS, false is putting in suspend mode
  * @return	ADS_OK if successful ADS_ERR_IO if failed
  */
-int ads_two_axis_enable_interrupt(bool enable);
 
-/**
- * @brief Updates the I2C address of the selected ADS. The default address 
- *		  is 0x12. Use this function to program an ADS to allow multiple
- *		  devices on the same I2C bus.
- *
- * @param	device	device number of the device that is being updated
- * @param	address	new address of the ADS
- * @return	ADS_OK if successful ADS_ERR_IO or ADS_ERR_BAD_PARAM if failed
- */
-int ads_two_axis_update_device_address(uint8_t device, uint8_t address);
-
-/**
- * @brief Initializes the hardware abstraction layer and sample rate of the ADS
- *
- * @param	ads_init_t	initialization structure of the ADS
- * @return	ADS_OK if successful ADS_ERR if failed
- */
 int ads_two_axis_init(ads_init_t * ads_init);
 
 /**
@@ -112,28 +94,6 @@ int ads_two_axis_calibrate(ADS_CALIBRATION_STEP_T ads_calibration_step, uint8_t 
  * @param	axes_enabled	bit mask of which axes to enable
  * @return	ADS_OK if successful ADS_ERR_IO or ADS_BAD_PARAM if failed
  */
-int ads_two_axis_enable_axis(uint8_t axes_enable);
 
-/**
- * @brief Shutdown ADS. Requires reset to wake up from Shutdown. ~50nA in shutdwon
- *
- * @return	ADS_OK if successful ADS_ERR_IO if failed
- */
-int ads_two_axis_shutdown(void);
-
-/**
- * @brief Wakes up ADS from shutdown. Delay is necessary for ADS to reinitialize 
- *
- * @return	ADS_OK if successful ADS_ERR_IO if failed
- */
-int ads_two_axis_wake(void);
-
-/**
- * @brief Checks that the device id is ADS_TWO_AXIS. ADS should not be in free run
-					when this function is called.
- *
- * @return	ADS_OK if dev_id is ADS_TWO_AXIS, ADS_ERR_DEV_ID if not
- */
-int ads_get_dev_id(void);
 
 #endif /* ADS_TWO_AXIS_H_ */
